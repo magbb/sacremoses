@@ -672,7 +672,7 @@ class MosesDetokenizer(object):
 
     IS_PUNCT = re.compile(r"^[\,\.\?\!\:\;\\\%\}\]\)]+$")
 
-    IS_OPEN_QUOTE = re.compile(r"""^[\'\"„“`]+$""")
+    IS_OPEN_QUOTE = re.compile(r"""^[\'\"„“”«»`]+$""")
 
     def __init__(self, lang="en"):
         super(MosesDetokenizer, self).__init__()
@@ -783,7 +783,7 @@ class MosesDetokenizer(object):
             # Combine punctuation smartly.
             elif self.IS_OPEN_QUOTE.search(token):
                 normalized_quo = token
-                if re.search(r"^[„“”]+$", token):
+                if re.search(r"^[„“”«»]+$", token):
                     normalized_quo = '"'
                 quote_counts[normalized_quo] = quote_counts.get(normalized_quo, 0)
 
